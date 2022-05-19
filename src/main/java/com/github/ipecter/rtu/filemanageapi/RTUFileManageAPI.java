@@ -21,18 +21,17 @@ public class RTUFileManageAPI {
     /**
      *
      * @param fileName
-     * @param type YAML or DB
+     * @param enumFile YAML or DB
      */
-    public void reloadFile(Plugin plugin, String fileName, String type) {
+    public void reloadFile(Plugin plugin, String fileName, EnumFile enumFile) {
         String dir = fileMap.get(fileName).directory;
         fileMap.remove(fileName);
-        if (type.equalsIgnoreCase("YAML")){
-            registerFile(fileName, new YAMLFile(plugin, dir, fileName));
+        switch (enumFile){
+            case DB:
+                registerFile(fileName, new YAMLFile(plugin, dir, fileName));
+            case YAML:
+                registerFile(fileName, new DBFile(plugin, dir, fileName));
         }
-        else if(type.equalsIgnoreCase("DB")){
-            registerFile(fileName, new YAMLFile(plugin, dir, fileName));
-        }
-
     }
 
     public StorageFile getFile(String fileName) {

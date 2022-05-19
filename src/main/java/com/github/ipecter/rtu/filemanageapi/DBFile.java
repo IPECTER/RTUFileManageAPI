@@ -75,7 +75,7 @@ public class DBFile extends StorageFile {
     }
 
     public void createTables() {
-        String sql = "CREATE TABLE IF NOT EXISTS aurora ("
+        String sql = "CREATE TABLE IF NOT EXISTS " + File + " ("
                 + "id integer PRIMARY KEY AUTOINCREMENT, "
                 + "player text NOT NULL UNIQUE, "
                 + "toggle tinyint NOT NULL);";
